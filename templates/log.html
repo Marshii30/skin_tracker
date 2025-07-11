@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Log Today – Skin Tracker{% endblock %}
+{% block content %}
+<h2>Log Skin-Care for {{ entry.log_date if entry else "today" }}</h2>
+
+<form method="POST" enctype="multipart/form-data">
+  <label><input type="checkbox" name="am_done" {% if entry and entry.am_done %}checked{% endif %}> Morning routine done</label><br>
+  <label><input type="checkbox" name="pm_done" {% if entry and entry.pm_done %}checked{% endif %}> Night routine done</label><br><br>
+
+  <textarea name="notes" rows="4" placeholder="Any notes...">{{ entry.notes if entry else "" }}</textarea><br><br>
+
+  <label>Upload selfie (optional): <input type="file" name="photo" accept=".jpg,.jpeg,.png"></label><br><br>
+
+  <button type="submit">Save</button>
+</form>
+{% endblock %}

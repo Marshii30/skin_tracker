@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard – Skin Tracker{% endblock %}
+{% block content %}
+    <h2>Last 30 Days of Skin Logs</h2>
+    {% for entry in entries %}
+        <div style="margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+            <strong>{{ entry.log_date.strftime('%d %b %Y') }}</strong><br>
+            ✅ AM: {{ 'Yes' if entry.am_done else 'No' }} |
+            🌙 PM: {{ 'Yes' if entry.pm_done else 'No' }}<br>
+            📝 Notes: {{ entry.notes or 'N/A' }}<br>
+            {% if entry.photo %}
+                📸 <img src="{{ url_for('uploaded_file', filename=entry.photo) }}" width="100" alt="Photo">
+            {% endif %}
+        </div>
+    {% else %}
+        <p>No entries yet.</p>
+    {% endfor %}
+{% endblock %}

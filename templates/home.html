@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Home – Skin Tracker{% endblock %}
+{% block content %}
+<h1>Welcome, buddi!</h1>
+{% if today %}
+  <p>You’ve already logged today ✅</p>
+{% else %}
+  <p>No log for today yet.</p>
+{% endif %}
+<a class="btn" href="{{ url_for('log') }}">Go to Log&nbsp;📝</a>
+{% endblock %}
